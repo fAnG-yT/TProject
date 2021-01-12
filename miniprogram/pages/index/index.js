@@ -83,19 +83,44 @@ Page({
     
     onLoad(){
       // token登录
-      request.toRequest('/v1/token').then(res=>{
-        if(res.data.code==100){
-          wx.setStorageSync('token', res.data.data.token)
-          this.setData({
-            show:true
-          })
+      // request.toRequest('/v1/token').then(res=>{
+      //   if(res.data.code==100){
+      //     wx.setStorageSync('token', res.data.data.token)
+      //     this.setData({
+      //       show:true
+      //     })
           
-        }else{
-          console.log("????")
-          wx.redirectTo({
-            url: '/pages/login/login',
-          })
-        }
+      //   }else{
+      //     wx.redirectTo({
+      //       url: '/pages/login/login',
+      //     })
+      //   }
+      // })
+      // 1. 获取数据库引用
+      const db = wx.cloud.database()
+      // 2. 构造查询语句
+      // collection 方法获取一个集合的引用
+      // where 方法传入一个对象，数据库返回集合中字段等于指定值的 JSON 文档。API 也支持高级的查询条件（比如大于、小于、in 等），具体见文档查看支持列表
+      // get 方法会触发网络请求，往数据库取数据
+      db.collection('userinfo').where({
+        // token:wx.getStorageSync('token')
+        token:"sdfsdf"
+      }).get().then(res => {
+          console.log(res)
+          if (res.data.length) {
+            this.setData({
+              show: true
+            })
+          }
+          else {
+            // wx.redirectTo({
+            //   url: '/pages/login/login',
+            // })
+            this.setData({
+              show: true
+            })
+          }
+
       })
     },
 

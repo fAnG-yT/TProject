@@ -73,35 +73,56 @@ Component({
     },
 
     toGetMealList:function(){
-      request.toRequest('/v1/meal/list').then((res) => {
-        if (res.data.code == 600) {
-          this.setData({
-            show:true,
-            timeToPublish:res.data.data.can_ganfan,
-            listData : res.data.data.list,
-          })
-          this.select(this.data.floor);
-        } else if (res.data.code == 900) {
-          var msg = {
-              show: true,
-              title: "温馨提示",
-              right:"确认",
-              msg: `登录失效，请重新登录`,
-              type: 0,
-              rightFn:()=>{
-                wx.redirectTo({
-                  url: '/pages/login/login',
-                })
-              }
-          };
-          this.triggerEvent('alert',{msg})
+      // 1. 获取数据库引用
+      const db = wx.cloud.database()
+      db.collection('publish').get({
+        success: function (res) {
+          console.log(res)
+          if (res.data.length) {
+            this.setData({
+              show:true,
+              timeToPublish:res.data.can_ganfan,
+              listData : res.data,
+            })
+            this.select(this.data.floor);
+          }
+          else {
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          }
         }
-        // else if(res.data.code==1000){
-        //   this.unkmsg.show=true
-        // }
-      }).catch(e=>{
-        console.log(e)
+
       })
+      // request.toRequest('/v1/meal/list').then((res) => {
+      //   if (res.data.code == 600) {
+      //     this.setData({
+      //       show:true,
+      //       timeToPublish:res.data.data.can_ganfan,
+      //       listData : res.data.data.list,
+      //     })
+      //     this.select(this.data.floor);
+      //   } else if (res.data.code == 900) {
+      //     var msg = {
+      //         show: true,
+      //         title: "温馨提示",
+      //         right:"确认",
+      //         msg: `登录失效，请重新登录`,
+      //         type: 0,
+      //         rightFn:()=>{
+      //           wx.redirectTo({
+      //             url: '/pages/login/login',
+      //           })
+      //         }
+      //     };
+      //     this.triggerEvent('alert',{msg})
+      //   }
+      //   // else if(res.data.code==1000){
+      //   //   this.unkmsg.show=true
+      //   // }
+      // }).catch(e=>{
+      //   console.log(e)
+      // })
 
     },
 

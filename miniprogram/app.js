@@ -3,6 +3,7 @@
 
 App({
   onLaunch: function () {
+    wx.cloud.init()
     //token登录
     // request.toRequest('/v1/token').then(res=>{
     //   if(res.data.code==100){
