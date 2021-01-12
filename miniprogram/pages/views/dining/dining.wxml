@@ -1,0 +1,52 @@
+<!--pages/views/dining/dining.wxml-->
+<view class="dining-container">
+ 
+  <!-- 筛选框 -->
+  <view class="selectBox">
+    <select-bar bindselect="select"/>
+  </view>
+
+    <!-- 列表 -->
+   
+      <scroll-view
+          scroll-y style="height:calc(100% - 55*2rpx - 30*2rpx)"
+          refresher-enabled="{{true}}"
+          refresher-threshold="{{100}}"
+          refresher-default-style="black"
+          refresher-background="#fff"
+          refresher-triggered="{{triggered}}"
+          bindrefresherpulling="onPulling"
+          bindrefresherrefresh="onRefresh"
+          bindrefresherrestore="onRestore"
+          bindrefresherabort="onAbort"
+      >
+      <view class="dining-list" wx:if="{{show}}">
+        <!-- 空列表 -->
+        <view wx:if="{{!subListData[0]}}" class="background">
+            <image src="../../../static/img/null.png" alt=""/>
+            <view wx:if="{{timeToPublish}}" class="nolittleTxt">哦豁,没有人分享餐饭呢,那我来!</view>
+            <view wx:else class="littleTxt">
+              现在不是发布和领取餐饭的时间哦
+            </view>
+            <!-- <i @click="toGetMealList" class="iconfont icon-shuaxin"></i>
+            <view @click="toGetMealList" class="refresh">刷新试试?</view> -->
+          </view>
+        <!-- 非空 -->
+        <view
+        wx:for="{{subListData}}"  
+        class="{{index%2==0?'whiteBox':'redBox'}} dining-list-box" 
+        bindtap="toRequestMeal"
+        data-item="{{item}}"
+        >
+            <view class="food">{{item.meal_name}}</view>
+            <view class="position"><i class="iconfont icon-building"></i>{{item.pickup_location}}</view>
+        </view>
+</view>
+      </scroll-view>
+    
+  
+    
+    <!-- 发布按钮 -->
+    <view class="publish" bindtap="throttleToRequestPublish"><i class="iconfont icon-21"></i></view>
+  
+</view>

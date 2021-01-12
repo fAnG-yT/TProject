@@ -1,0 +1,92 @@
+<!--pages/components/center/center.wxml-->
+<!-- 个人中心 -->
+    <view>
+        <view wx:if="{{show}}" class="background" bindtap="close"></view>
+        <view class="{{show?'after':'before'}} container">
+            <view class="content">
+                <!-- 个人信息 -->
+                <view class="mine">{{user}}</view>
+                <!-- 个人等级 -->
+                <view class="gradeBox">
+                  <view class="reward">
+                     <image src='{{lvimg}}' class="rewardimg"/>
+                     <!-- <image src="../../../static/img/shutiao.png" class="rewardimg"/> -->
+                     <image src="../../../static/img/lv.png" class="lvlogo"/>
+                     <view class="leveltxt">
+                        <view class="lvtext">{{ level }}</view>
+                        </view>
+                     </view>                            
+                    <view class="scorePart">
+                        <view class="grade">
+                            <view class="progressContainer">
+                                <view class="on">
+                                    <image src="../../../static/img/breadLeft.png" wx:if="{{grow[0]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[1]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[2]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[3]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[4]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[5]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[6]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[7]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[8]}}"/>
+                                    <image src="../../../static/img/breadMiddle.png" wx:if="{{grow[9]}}"/>
+                                    <image src="../../../static/img/breadRight.png" wx:if="{{grow[0]}}"/>
+                                </view>
+                                <view class="middle">
+                                    <image src="../../../static/img/breadLeft.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadMiddle.png" />
+                                    <image src="../../../static/img/breadRight.png" />
+                                </view>
+
+                                <view class="off">
+                                    <image src="../../../static/img/breadLeftOff.png"/>
+
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+                                    <image src="../../../static/img/breadMiddleOff.png"/>
+
+                                    <image src="../../../static/img/breadRightOff.png"/>
+                                </view>
+                            </view>
+                            <span class="precentText">
+                                {{ precent }}
+                            </span>
+                        </view>
+                    </view>
+                </view>
+                <!-- 选项列表 -->
+                <view class = "out">
+                  <view class="list" 
+                  wx:for="{{list}}" 
+                  key="{{item.name}}" 
+                  bindtap="changeView"
+                  data-item="{{item}}"
+                  >
+                      <view class="item">
+                          <i class="iconfont {{item.icon}}"></i>
+                          <span>{{item.name}}</span>
+                      </view>
+                  </view>
+                </view>
+            </view>
+        </view>
+        <!-- <InvalidLogin />
+        <Unknowtip :unkmsg="unkshow"/> -->
+    </view>

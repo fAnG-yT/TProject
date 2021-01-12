@@ -1,0 +1,15 @@
+<!--pages/components/loading/loading.wxml-->
+<!-- 使用说明：<Loading :loading="自定义变量1" :msg="自定义变量2" 
+            1.通过自定义变量1来设置是否显示
+            2.默认文本为“正在努力加载中...”,也可通过msg传入自定义文本
+            
+ -->
+ <view wx:if="{{loading}}">
+        <view class="loading-background">
+        </view>
+        <!-- <i class="iconfont icon-shuaxin"></i> -->
+        <view class="loading-box">
+            <image src="../../../static/img/loading.png" alt="" class="iconfont"/>
+            <view class="text">正在努力加载中...</view>
+        </view>
+</view>

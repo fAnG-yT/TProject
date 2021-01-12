@@ -1,0 +1,172 @@
+.container {
+  background-color: #fff;
+  width: 100vw;
+  height: 100%;
+  border-radius: 50*2rpx 50*2rpx 0*2rpx 0*2rpx;
+  padding-top: 45*2rpx;
+  overflow: hidden;
+  .scrollContainer {
+    width: 100%;
+    overflow: auto;
+    height: calc(100% - 30*2rpx - 55*2rpx);
+    .listContainer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: nowrap;
+      .list {
+        width: 306*2rpx;
+        height: 119*2rpx;
+        line-height: 20*2rpx;
+        border-radius: 5*2rpx;
+        box-shadow: 0*2rpx 1*2rpx 2*2rpx 0*2rpx #674848;
+        // background-color: #EC867F;
+        // background-color: #FEC9C1;
+        margin-bottom: 11*2rpx;
+        display: flex;
+        flex-direction: column;
+        .mealName {
+          padding-top: 18*2rpx;
+          padding-left: 25*2rpx;
+          width: 281*2rpx;
+          height: 32*2rpx;
+          span {
+            border-bottom: #fff 1*2rpx solid;
+            font-size: 16*2rpx;
+            color: #fff;
+            text-align: left;
+            padding-bottom: 10*2rpx;
+          }
+        }
+        .mealAddr {
+          display: flex;
+          width: 306*2rpx;
+          height: 35*2rpx;
+          i {
+            font-size: 20*2rpx;
+            margin-left: 27*2rpx;
+            margin-top: 8*2rpx;
+            color: #fff;
+          }
+          span {
+            color: #fff;
+            margin-left: 2*2rpx;
+            margin-top: 11*2rpx;
+            font-size: 13*2rpx;
+            text-align: left;
+          }
+        }
+        .theLastPart {
+          width: 306*2rpx;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          span {
+            color: #fff;
+            font-size: 13*2rpx;
+            text-align: left;
+            margin-top: 5*2rpx;
+            margin-left: 27*2rpx;
+            width: 126*2rpx;
+          }
+          .toget {
+            width: 130*2rpx;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: row;
+            font-size: 12*2rpx;
+            .cancel {
+              width: 55*2rpx;
+              height: 25*2rpx;
+              border: 1*2rpx solid #fff;
+              border-radius: 5*2rpx;
+              color: #fff;
+              background-color: #f77e5e;
+              margin-right: 10*2rpx;
+              font-size: 13*2rpx;
+            }
+            .get {
+              width: 55*2rpx;
+              height: 25*2rpx;
+              color: #fff;
+              background-color: #f7ce74;
+              margin-right: 10*2rpx;
+              border-radius: 5*2rpx;
+              font-size: 13*2rpx;
+            }
+          }
+          .getAgain {
+            .get {
+              width: 75*2rpx ;
+              height: 25*2rpx ;
+              color: #fff;
+              background-color: #f7ce74;
+              margin-right: 10*2rpx;
+              border-radius: 5*2rpx;
+              font-size: 13*2rpx;
+            }
+          }
+          .rightTips {
+            width: 139*2rpx;
+            margin-right: 14*2rpx;
+            display: flex;
+            flex-direction: row-reverse;
+          }
+        }
+      }
+    }
+  }
+}
+.control_show {
+  height: 100%;
+}
+.noReceive {
+  // margin-top: 2*2rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16*2rpx;
+  transform: translateY(-100*2rpx);
+  image {
+    width: 188*2rpx;
+    height: 112*2rpx;
+  }
+  i {
+    font-size: 30*2rpx;
+    color: #f77e5e;
+    display: inline-block;
+    margin-top: 30*2rpx;
+    font-weight: 1000;
+  }
+  view{
+    color: #101010;
+    font-size: 16*2rpx;
+    text-align: center;
+    margin-top: 10*2rpx;
+  }
+  .refresh {
+    font-size: 13*2rpx;
+    color: #f77e5e;
+    margin-top: 5*2rpx;
+    font-weight: 1000;
+  }
+}
+.notGet {
+  background-color: #f77e5e;
+  border: #f77e5e 1*2rpx solid;
+}
+.isGetted {
+  color: #ba8881;
+  background-color: #fec9c1;
+  font-size: 16*2rpx;
+  border: #fec9c1 1*2rpx solid;
+}
+
+button{
+  padding:3*2rpx !important;
+  text-align: center;
+  vertical-align: bottom !important;
+}

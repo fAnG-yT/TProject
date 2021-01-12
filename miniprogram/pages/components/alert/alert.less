@@ -1,0 +1,94 @@
+//透明罩 
+.background1{
+  opacity: 0.8;
+  background-color:#fff;
+  position: fixed;
+  left: 0*2rpx;
+  top:0*2rpx;
+  height:100vh;
+  width: 100vw;
+  z-index: 100;
+}
+
+//弹出框
+.box{
+  z-index: 101;
+  left:0*2rpx;
+  right: 0*2rpx;
+  margin: auto;
+  top: 250*2rpx;
+  position: absolute;
+  width: 250*2rpx;
+  border-radius: 4*2rpx;
+  background-color: rgba(255, 255, 255, 100);
+  box-shadow: 0*2rpx 1*2rpx 3*2rpx 0*2rpx rgba(0, 0, 0, 0.4);
+  border: #fff 1*2rpx solid;
+
+  .content{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+
+      view{
+          margin-top: 20*2rpx;
+      }
+
+      .alertBox{
+          margin-top: 20*2rpx;
+          border: 1*2rpx solid  rgba(187, 187, 187, 100);
+          border-radius: 8*2rpx;
+          // height:100%;
+          width: 220*2rpx;
+          text-align: start;
+          // display: flex;
+          // flex-direction: column;
+          // align-items:flex-start;
+          // justify-content:flex-start;
+
+          view{
+              margin: 8*2rpx auto 8*2rpx 8*2rpx;
+              font-size: 13*2rpx;
+          }
+      }
+
+      .msg{
+          font-size:13*2rpx;
+          max-width:200*2rpx;
+          text-align:center;
+          white-space: pre-wrap;
+          }
+  }
+
+  
+  .btnBox{
+      margin-top: 20*2rpx;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+  }
+
+  .left{
+      // margin-top: 20*2rpx;
+      // position: absolute;
+      // float: left;
+      // margin-left: 20*2rpx;
+      width: 85*2rpx;
+      height: 35*2rpx;
+      color: rgba(171, 147, 147, 80);
+      font-size: 16*2rpx;
+      text-align: center;
+  }
+
+  .right{
+      // margin-top: 20*2rpx;
+      // position: absolute;
+      // float: right;
+      // margin-right: 20*2rpx;
+      width: 85*2rpx;
+      height: 35*2rpx;
+      color: rgba(247, 206, 116, 100);
+      font-size: 16*2rpx;
+      text-align: center;
+  }
+}

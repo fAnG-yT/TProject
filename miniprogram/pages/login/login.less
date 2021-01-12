@@ -1,0 +1,83 @@
+/* pages/login/login.wxss */
+//使用绝对路径报错，必须使用相对路径
+@import '../../iconfont/iconfont.wxss';
+
+.login-container{
+  background-color: #f77e5e;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+
+
+  image{
+    width: 102*2rpx;
+    height: 94*2rpx;
+    margin: 10*2rpx;
+  }
+
+  h6{
+    margin-bottom: 20*2rpx;
+  }
+
+  .inputBox{
+    width: 80vw;
+    margin: 10*2rpx;
+    height: 30*2rpx;
+    
+    input{
+      display:inline-block;
+      width: 80%;
+      font-size: 13*2rpx;
+      // caret-color: #fff;
+    }
+    
+    .iconfont{
+    
+    display: inline-block;
+    margin: 5*2rpx 10*2rpx;
+    font-size: 22*2rpx;
+    vertical-align: text-bottom;
+  }
+  }
+  .inputBox::after{
+    display: block;
+    content: "";
+    height: 1*2rpx;
+    background-color: #fff;
+  }
+
+  button{
+    margin-top: 10*2rpx;
+    width: 80vw !important;
+    height: 35*2rpx !important;
+    // padding: 5*2rpx;
+    border-radius: 8*2rpx;
+    background-color: rgba(247, 206, 116, 100);
+    color: rgba(255, 255, 255, 100);
+    font-size: 16*2rpx;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  .button-hover{
+    opacity: 0.7;
+  }
+
+  .bottom{
+    margin-top: 5*2rpx;
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+
+    span::after{
+      display: block;
+      content: "";
+      height: 1*2rpx;
+      background-color: #fff;
+    }
+  }
+  
+}

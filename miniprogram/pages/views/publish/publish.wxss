@@ -1,0 +1,159 @@
+.container {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  border-radius: 100rpx 100rpx 0rpx 0rpx;
+  padding-top: 90rpx;
+  overflow: hidden;
+}
+.container .scrollContainer {
+  overflow: auto;
+  height: calc(100% - 30*2rpx - 55*2rpx);
+}
+.container .scrollContainer .listContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.container .scrollContainer .listContainer .list {
+  width: 612rpx;
+  height: 238rpx;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 2rpx 4rpx 0rpx #674848;
+  margin-bottom: 22rpx;
+  display: flex;
+  flex-direction: column;
+}
+.container .scrollContainer .listContainer .list .mealName {
+  padding-top: 36rpx;
+  padding-left: 50rpx;
+  width: 562rpx;
+  height: 64rpx;
+}
+.container .scrollContainer .listContainer .list .mealName span {
+  border-bottom: #fff 2rpx solid;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: left;
+  padding-bottom: 20rpx;
+}
+.container .scrollContainer .listContainer .list .mealAddr {
+  display: flex;
+  width: 612rpx;
+  height: 70rpx;
+}
+.container .scrollContainer .listContainer .list .mealAddr i {
+  font-size: 40rpx;
+  margin-left: 54rpx;
+  margin-top: 16rpx;
+  color: #fff;
+}
+.container .scrollContainer .listContainer .list .mealAddr span {
+  color: #fff;
+  margin-left: 4rpx;
+  margin-top: 22rpx;
+  font-size: 26rpx;
+  text-align: left;
+}
+.container .scrollContainer .listContainer .list .theLastPart {
+  width: 612rpx;
+  display: flex;
+}
+.container .scrollContainer .listContainer .list .theLastPart span {
+  color: #fff;
+  font-size: 26rpx;
+  text-align: left;
+  margin-top: 10rpx;
+  margin-left: 54rpx;
+  width: 252rpx;
+}
+.container .scrollContainer .listContainer .list .theLastPart .rb {
+  width: 278rpx;
+  margin-right: 28rpx;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.container .warntip {
+  position: absolute;
+  top: 20rpx;
+  width: 580rpx;
+  left: 0rpx;
+  right: 0rpx;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.container .warntip view {
+  text-align: center;
+  color: #faa72b;
+  font-weight: 300;
+  font-size: 26rpx;
+}
+.list.one {
+  background-color: #f77e5e;
+  border: #f77e5e 2rpx solid;
+}
+.list.two,
+.list.three {
+  background-color: #fec9c1;
+  border: #fec9c1 2rpx solid;
+}
+.rb .one {
+  width: 110rpx;
+  height: 50rpx;
+  color: #fff;
+  border: #fff 2rpx solid;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rb .two {
+  color: #ba8881;
+  font-size: 32rpx;
+  text-align: right;
+  margin-top: 8rpx;
+}
+.rb .three {
+  color: #ba8881;
+  font-size: 32rpx;
+  text-align: right;
+  margin-top: 8rpx;
+}
+.noMsg {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 32rpx;
+  transform: translateY(-200rpx);
+}
+.noMsg image {
+  width: 376rpx;
+  height: 224rpx;
+}
+.noMsg .nomsgtext {
+  color: #101010;
+  font-size: 32rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.noMsg i {
+  color: #f77e5e;
+  font-size: 60rpx;
+  font-weight: 1000;
+  margin-top: 60rpx;
+}
+.noMsg .nomsgrelfash {
+  color: #f77e5e;
+  margin-top: 10rpx;
+  font-weight: 1000;
+  font-size: 26rpx;
+}

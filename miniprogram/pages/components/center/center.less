@@ -1,0 +1,237 @@
+
+@import '../../../iconfont/iconfont.wxss';
+
+.background{
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top: 0*2rpx;
+  left: 0*2rpx;
+  z-index: 89;
+}
+
+.before{
+  transform: translateX(-100%);
+  background-color: #f77e5e;
+}
+
+.after{
+  box-shadow: 0*2rpx 1*2rpx 3*2rpx 0*2rpx rgba(103, 72, 72, 44);
+  transform: translateY(0%);
+  background-color:rgb(252, 246, 246);
+}
+
+.container{
+  border-radius: 0*2rpx  8*2rpx 8*2rpx 0*2rpx;
+  transition: all 0.3s linear;
+
+  position:fixed;
+  top:0*2rpx;
+
+  // height: 215*2rpx;
+  width: 60vw;
+  height: 100vh;
+  // width: 90%;
+  // margin: auto;
+  // left: 0*2rpx;
+  // right: 0*2rpx;
+  z-index: 90;
+
+  .content{
+      // margin-top:34*2rpx;
+      // width: 100%;
+      border-bottom: #fff 1*2rpx solid;
+      border-bottom-right-radius: 8*2rpx;
+      border-bottom-left-radius: 8*2rpx;
+
+  
+    //工号
+      .mine{
+        padding: 18*2rpx 0*2rpx 18*2rpx 15*2rpx;
+        margin: auto;
+        margin-top: 15*2rpx;
+        width: 95%;
+        // background-color: #f77e5e;
+        background-image: linear-gradient(to right, #f77e5e ,#faa790);
+        border-radius: 8*2rpx;
+        color:#fff;
+        box-sizing: border-box;
+        box-shadow: 0*2rpx 1*2rpx 3*2rpx 0*2rpx rgb(172, 167, 167);
+        font-size: 18*2rpx;
+        font-weight: 800;
+      }
+
+      //等级
+      .gradeBox{
+          margin: auto;
+          margin-top: 15*2rpx;
+          width: 95%;
+          border-radius: 8*2rpx;
+          display: flex;
+          flex-direction: column;
+          background-color: #fff;
+          box-sizing: border-box;
+          box-shadow: 0*2rpx 1*2rpx 3*2rpx 0*2rpx rgb(185, 179, 179);
+              
+                  .reward{
+                    width: 15%;
+                    margin: 10*2rpx auto 5*2rpx 10*2rpx;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    padding: 3*2rpx 9*2rpx 3*2rpx 9*2rpx;
+                    border-radius: 17*2rpx 17*2rpx 17*2rpx 17*2rpx;
+                    border: #F7CE74 1*2rpx solid;
+                    // background-color: #f77f5e3b;
+                    background-color: rgba(255, 255, 255, 0.5);
+
+                      .rewardimg{
+                          // position: absolute;
+                          height: 15*2rpx;
+                          width: 15*2rpx;
+                          // top: 31*2rpx;
+                          // left: 97*2rpx;
+                    }
+                      .lvlogo{
+                      height: 10*2rpx;
+                      width: 15*2rpx;
+                      padding-left: 4*2rpx;
+                      padding-right: 2*2rpx;
+                    }
+                      .leveltxt{
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                        .lvtext{
+                            font-size: 13*2rpx;
+                            color: #ffcc00;
+                            font-style: italic;
+                            font-weight: 600;
+                            // font-family: Microsoft YaHei;
+                        }
+                      }
+                  }
+                  
+                  
+                  
+          
+          .back{
+              padding-top: 5*2rpx;
+              font-size: 20*2rpx;
+              color: #fff;
+              // transform: rotateZ(90deg);
+          }
+
+          .scorePart{
+            display: flex;
+            flex-wrap: nowrap;
+          
+            .grade{
+              width: 100%;
+              display: flex;
+              flex-wrap: nowrap;
+              align-items: flex-end;
+              margin-left: 10*2rpx;
+              margin-bottom: 10*2rpx;
+            }
+            .progressContainer{
+              position: relative;
+              // width: 100%;
+              .on{
+                  position: absolute;
+                  top: 0;
+                  z-index: 5;
+                  // width: 100%;
+                  image{
+                    height: 12*2rpx;
+                    width: 12*2rpx;
+                    display: inline-block;
+                  }
+              }
+              .middle{
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  z-index: 1;
+                  opacity: 0.3;
+                  // width: 100%;
+                  image{
+                      height: 12*2rpx;
+                      width: 12*2rpx;
+                      display: inline-block;
+                  }
+              }
+              .off{
+                  z-index: 3;
+                  // width: 100%;
+                  image{
+                    height: 12*2rpx;
+                    width: 12*2rpx;
+                    display: inline-block;
+                  }
+              }
+            }
+            .precentText{
+              color: #F7CE74;
+              font-size: 13*2rpx;
+              padding-bottom: 2*2rpx;
+              margin-left: 5*2rpx;
+            }
+          }
+      }
+
+      // 列表
+    .out{
+      box-shadow: 0*2rpx 1*2rpx 3*2rpx 0*2rpx rgb(185, 179, 179);
+      background-color: #fff;
+      border-radius: 8*2rpx;
+      margin: auto;
+      margin-top: 15*2rpx;
+      width: 95%;
+
+      .list{
+          overflow: hidden;
+          // width: 100%;
+          
+          height: 50*2rpx;
+          color: #f77e5e;
+          
+
+          .item{
+              margin-left: 15*2rpx;
+              margin-top: 25*2rpx;
+              // display: inline-block;
+              // margin-top: 50%;
+              transform: translateY(-50%);
+
+              span{   
+                  font-size: 13*2rpx;
+                  margin-left: 12*2rpx;
+                  vertical-align:middle;
+              }
+
+              .iconfont{
+                  font-size: 20*2rpx;
+                  vertical-align:middle;
+              }
+          }
+
+          // .item::before{
+          //     content: "";
+          //     display: inline-block;
+          //     height: 20*2rpx;
+          //     width: 3*2rpx;
+          //     margin-right: 12*2rpx;
+          //     background-color: #f77e5e;
+          //     vertical-align:text-bottom;
+          // }
+          
+      }
+    }
+      
+      
+  }
+}
+
+
+

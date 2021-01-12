@@ -1,0 +1,41 @@
+<!--pages/components/alert/alert.wxml-->
+<!-- <text>pages/components/alert/alert.wxml</text> -->
+
+  <!--弹出框复用组件 -->
+  <!-- 使用说明：<Alert :msg="自定义对象", @right="自定义对象.rightFn"> 
+    1.自定义对象:{
+        show:false,//是否显示，默认值为false
+        title:"",//标题
+        left:"左键名",//取消键，点击关闭
+        leftCSS:"样式（如:color:#000;)",//默认灰色
+        right:"右键名",
+        rightCSS:"右键颜色",//默认橙色
+        type:""//0或1（0表示无边框，传入一句文本，1表示有边框,传入数据需要为列表）
+        msg:"",//[[{txt:"",style:""},{}]](一个元素一行，txt表示该行文本，style修改该行的样式)或字符串
+        rightFn:function//点击弹出框右键的对应执行函数
+    }
+    备注：如果msg为字符串，可以通过\n作为换行符，例如msg.msg = "abcd\nabcd"==> 效果:   abcd
+                                                                                   abcd
+    -->
+    <view wx:if="{{msg.show}}">
+        <view class="background1"></view>
+          <view class="box">
+              <view class="content">
+                      <!-- 标题 -->
+                      <view style="font-size:32rpx;">{{msg.title}}</view>
+                      <!-- 内容 -->
+                      <view wx:if="{{msg.type}}" class="alertBox">
+                          <view wx:for="{{msg.msg}}" :key="index" style="{{item.style}}">
+                              {{item.txt}}
+                          </view>
+                      </view>
+                      <view wx:else class="msg">{{msg.msg}}</view>
+              </view>
+              <!-- 按钮 -->
+              <view class="btnBox">
+                  <view wx:if="{{msg.left}}" class="left" style="{{msg.leftCSS}}"  bindtap="clickLeft">{{msg.left}}</view>
+                  <view wx:if="{{msg.right}}" class="right" style="{{msg.rightCSS}}"  bindtap="clickRight">{{msg.right}}</view>
+              </view>
+          </view>
+       
+    </view>

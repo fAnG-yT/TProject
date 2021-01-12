@@ -1,0 +1,25 @@
+/* pages/components/topbar/topbar.wxss */
+/* 导航栏 */
+.topbar {
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.topTab .content {
+  /* display: inline-block; */
+  font-size: 28rpx;
+}
+.actived {
+  color: #f7ce74;
+}
+.actived::after {
+  content: "";
+  display: block;
+  height: 4rpx;
+  background-color: #f7ce74;
+  margin-top: 10rpx;
+}
+.disactived {
+  color: #ffffff;
+}

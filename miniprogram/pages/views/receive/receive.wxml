@@ -1,0 +1,111 @@
+<!--pages/views/receive/receive.wxml-->
+<view class="container">
+    <view class="control_show">
+      <view class="scrollContainer" wx:if="{{myReceive[0]}}">
+        <!-- 滚动容器 -->
+        <view class="listContainer">
+          <!-- 列表容器 -->
+          <view
+            wx:for="{{myReceive}}"
+            :key="item.publish_id"
+            class="{{item.status != 3 ? 'notGet' : 'isGetted'}} list"
+          >
+            <!-- 信息列表 -->
+            <view class="mealName">
+              <!-- 餐饭名部分的容器 -->
+              <span>{{filter.changeName(item.meal_name)}}</span>
+            </view>
+            <view class="mealAddr">
+              <!-- 餐饭楼层地址部分的容器 -->
+              <i class="iconfont icon-building"></i>
+              <span>{{ item.pickup_location }}</span>
+            </view>
+            <view class="theLastPart">
+              <!-- 最下面剩下部分容器(日期和状态) -->
+              <span style="width:360rpx">
+                {{ filter.changeDate(item.date)}} {{filter.changeType(item.meal_type)}}
+                </span>
+              <view class="toget" wx:if="{{item.status == 1}}">
+                <button class="cancel" bindtap="cancel" data-item="{{item}}">
+                  取消
+                </button>
+                <button class="get" bindtap="getFood" data-item="{{item}}">
+                  {{ filter.changeStatus(item.status)}}
+                </button>
+              </view>
+              <view class="getAgain" wx:if="{{item.status == 2}}">
+                <view>
+                  <button
+                    class="get"
+                    bindtap="sureGetFood"
+                    data-item="{{item}}"
+                  >
+                    {{ filter.changeStatus(item.status) }}
+                  </button>
+                </view>
+              </view>
+              <view class="rightTips" wx:if="{{item.status == 3}}">
+                <view>
+                  {{  filter.changeStatus(item.status) }}
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!myReceive[0]}}" class="noReceive">
+        <image src="../../../static/img/null.png" alt="" />
+        <view>咦？你没领取过餐饭？快去试一试吧！</view>
+        <!-- <i bindtap="getReceiveFood" class="iconfont icon-shuaxin"></i>
+        <view bindtap="getReceiveFood" class="refresh">刷新试试?</view> -->
+      </view>
+
+      <!-- 二次却确认取消按钮，发起取消领取请求 -->
+      <!-- <Alert
+        :msg="alertMessage"
+        @right="alertMessage.rightFn(alertMessage)"
+        v-show="showAlert == 1"
+      /> -->
+      <!-- 各种状态码弹窗 -->
+      <!-- <Alert :msg="Alert" v-show="showAlert == 2" /> -->
+      <!-- 二次确认领取按钮，发起开箱请求 -->
+      <!-- <Alert
+        :msg="getAlert"
+        v-show="showAlert == 3"
+        @right="getAlert.rightFn(getAlert)"
+      /> -->
+      <!-- <Unknowtip :unkmsg="unkshow" /> -->
+    </view>
+  </view>
+      <wxs module="filter">
+          function changeDate(value){
+            return value.replace(getRegExp("-","g"), "/");
+          }
+          function changeType(value) {
+            if (value == 1) {
+              return "午餐";
+            } else {
+              return "晚餐";
+            }
+          }
+          function changeName(name){
+            if (name.length > 15) {
+              return name.slice(0, 14) + "...";
+            } else return name;
+          }
+          function changeStatus(value) {
+            if (value == 1) {
+              return "领取";
+            } else if (value == 2) {
+              return "再次开箱";
+            } else {
+              return "已失效";
+            }
+          }
+          module.exports = {
+            changeDate:changeDate,
+            changeName:changeName,
+            changeStatus:changeStatus,
+            changeType:changeType
+          }
+      </wxs>

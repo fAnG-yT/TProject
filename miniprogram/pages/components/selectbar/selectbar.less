@@ -1,0 +1,61 @@
+/* pages/components/selectbar/selectbar.wxss */
+@import '../../../iconfont/iconfont.wxss';
+
+.select-bar-container::before{
+  content: "";
+  display:table;
+}
+
+.select-bar-container{
+position: relative;
+}
+
+.select-bar-container .select-bar-box{
+  box-sizing: border-box;
+  padding: 3*2rpx 10*2rpx;
+  margin: 10*2rpx auto;
+  width: 260*2rpx;
+  height: 30*2rpx;
+  border-radius: 10*2rpx;
+  color: rgba(136, 136, 136, 100);
+  font-size: 14*2rpx;
+  text-align: left;
+  border: 2*2rpx solid rgba(236, 134, 127, 100);
+}
+  .select-bar-container .select-bar-box .iconfont{
+      float:right;
+      margin-right: 5*2rpx;
+      margin-top: auto;
+  }
+
+  .select-bar-container .select-bar-box .hidden{
+      transform: rotateZ(180deg);
+  }
+
+  .select-bar-container .selectBox{
+  background-color: #fff;
+  position:absolute;
+  left: 0*2rpx;
+  right: 0*2rpx;
+  margin: auto;
+  top: 40*2rpx;
+  width: 251*2rpx;
+  box-shadow: 0*2rpx 2*2rpx 6*2rpx 0*2rpx rgba(187, 187, 187, 100);
+  /* border: 1*2rpx solid rgba(187, 187, 187, 100); */
+  /* border-top-color: transparent; */
+  font-size: 13*2rpx;
+  z-index: 50;
+  border-radius:  0*2rpx 0*2rpx 8*2rpx 8*2rpx;
+}
+
+  .select-bar-container .selectBox .content{
+      padding: 10*2rpx;
+      color: rgb(95, 92, 92);
+  }
+
+  .select-bar-container .selectBox .actived{
+      color:rgba(236, 134, 127, 100);
+      background-color: rgba(245, 236, 236, 0.945);
+      border-left: 2*2rpx solid rgba(236, 134, 127, 100);
+  }
+

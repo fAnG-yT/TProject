@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "top-bar":"/pages/components/topbar/topbar",
+    "dining":"/pages/views/dining/dining",
+    "alert":"/pages/components/alert/alert",
+    "receive":"/pages/views/receive/receive",
+    "publish":"/pages/views/publish/publish",
+    "center":"/pages/components/center/center",
+    "loading":"/pages/components/loading/loading"
+  }
+}

@@ -1,0 +1,22 @@
+<!--pages/login/login.wxml-->
+<!-- <text>pages/login/login.wxml</text> -->
+<view class="login-container">
+  <loading loading="{{loading}}"/>
+  <image src="../../static/img/logo.png"></image>
+  <h6>T饭友</h6>
+  <view class="inputBox">
+    <i class="iconfont icon-renbudaiwaiquan"></i>
+    <input placeholder="请输入工号(如：T1778)"
+    placeholder-style="color:#fff"
+    model:value="{{jobnumber}}"></input>
+  </view>
+  <view class="inputBox">
+    <i class="iconfont icon-mima"></i>
+    <input placeholder="请输入密码"
+    placeholder-style="color:#fff"
+    password="true"
+    model:value="{{password}}"></input>
+  </view>
+  <button bindtap="login" hover-class="button-hover">登录</button>
+  <view class="bottom"><span>忘记密码?</span><span>注册</span></view>
+</view>

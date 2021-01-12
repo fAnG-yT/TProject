@@ -1,0 +1,9 @@
+<!--pages/components/selectbar/selectbar.wxml-->
+<view class="select-bar-container">
+        <view class="select-bar-box" bindtap="showbox">
+        {{floor=="不限"?"选择楼层":floor}}<i class="{{show?'':'hidden'}} iconfont icon-Group-"></i>
+        </view>
+        <view wx:if="{{show}}" class="selectBox">
+            <view wx:for="{{floorList}}" bindtap="getFloor" data-item="{{item}}" class="{{item==floor?'actived':''}} content">{{item}}</view>
+        </view>
+</view>

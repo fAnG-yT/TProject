@@ -1,0 +1,48 @@
+<!--pages/views/publish/publish.wxml-->
+  <view class="container">
+    <view class="warntip">
+        <view>
+            发布的餐饭请不要在美餐开箱哦
+        </view>
+    </view>
+    <view class="scrollContainer" wx:if="{{haveMsg}}">
+      <!-- 滚动容器 -->
+      <view class="listContainer">
+        <!-- 列表容器 -->
+        <view
+          class=""
+          wx:for="{{releaseList}}"
+          :key="{{item.id}}"
+          class="{{item.status}} list"
+        >
+          <!-- 信息列表 -->
+          <view class="mealName">
+            <!-- 餐饭名部分的容器 -->
+            <span>{{ item.name }}</span>
+          </view>
+          <view class="mealAddr">
+            <!-- 餐饭楼层地址部分的容器 -->
+            <i class="iconfont icon-building"></i>
+            <span>{{ item.address }}</span>
+          </view>
+          <view class="theLastPart">
+            <!-- 最下面剩下部分容器(日期和状态) -->
+            <span>{{ item.time }} {{ item.mealType }}</span>
+            <view class="rb">
+              <view class="{{item.status}}" bindtap="cancelRelease" data-item = "{{item}}">
+                {{ item.tipstext }}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="noMsg" wx:if="{{!haveMsg}}">
+      <image src="../../../static/img/null.png"/>
+      <view class="nomsgtext">啊？你没发布过餐饭？快去试一试吧！</view>
+      <!-- <i class="iconfont icon-shuaxin" bindtap="reflashList"></i>
+      <view class="nomsgrelfash">刷新试试?</view> -->
+    </view>
+    <!-- <Alert :msg="alertMessage" @right="ownRightFn(alertMessage)" />
+    <Unknowtip :unkmsg="unkshow" /> -->
+  </view>

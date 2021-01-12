@@ -1,0 +1,8 @@
+<!--pages/components/topbar/topbar.wxml-->
+<view class="topbar" >
+    <view id="{{index}}" 
+    wx:for="{{tabList}}" 
+    class="{{actived==index?'actived':'disactived'}} content" 
+    bindtap="switchTo"
+    >{{item.name}}</view>
+</view>

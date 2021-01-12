@@ -1,0 +1,69 @@
+.background1 {
+  opacity: 0.8;
+  background-color: #fff;
+  position: fixed;
+  left: 0rpx;
+  top: 0rpx;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100;
+}
+.box {
+  z-index: 101;
+  left: 0rpx;
+  right: 0rpx;
+  margin: auto;
+  top: 500rpx;
+  position: absolute;
+  width: 500rpx;
+  border-radius: 8rpx;
+  background-color: #ffffff;
+  box-shadow: 0rpx 2rpx 6rpx 0rpx rgba(0, 0, 0, 0.4);
+  border: #fff 2rpx solid;
+}
+.box .content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.box .content view {
+  margin-top: 40rpx;
+}
+.box .content .alertBox {
+  margin-top: 40rpx;
+  border: 2rpx solid #bbbbbb;
+  border-radius: 16rpx;
+  width: 440rpx;
+  text-align: start;
+}
+.box .content .alertBox view {
+  margin: 16rpx auto 16rpx 16rpx;
+  font-size: 26rpx;
+}
+.box .content .msg {
+  font-size: 26rpx;
+  max-width: 400rpx;
+  text-align: center;
+  white-space: pre-wrap;
+}
+.box .btnBox {
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.box .left {
+  width: 170rpx;
+  height: 70rpx;
+  color: #ab9393;
+  font-size: 32rpx;
+  text-align: center;
+}
+.box .right {
+  width: 170rpx;
+  height: 70rpx;
+  color: #f7ce74;
+  font-size: 32rpx;
+  text-align: center;
+}

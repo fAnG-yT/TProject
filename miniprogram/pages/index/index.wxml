@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<view class="container" wx:if="{{show}}">
+  <!-- 加载组件 -->
+  <loading loading = "{{loading}}" />
+  <!-- 个人中心下拉框 -->
+  <center show="{{showCenter}}" class="userCenter" bindalert="alert"/>
+  <!-- 弹出框 -->
+  <alert bindright="right" msg="{{msg}}"/>
+  <!-- 个人中心 -->
+  <view class="center" bindtap="showCenter"><i class="iconfont icon-caidan"></i></view>
+  <!-- 导航 -->
+  <top-bar class="top-bar" actived="{{current}}" bindchangecomponents="changecomponents" />
+  <!-- 内容 -->
+  <view class="content">
+    <swiper  style="height:100%"
+    current="{{current}}"
+    bindchange="change"
+    >
+      <swiper-item>
+        <dining bindalert="alert" class="dining" bindchangecomponents="changecomponents" bindloading="loading"/>
+      </swiper-item>
+      <swiper-item>
+        <receive class="receive" bindalert="alert" bindloading="loading"/>
+      </swiper-item>
+      <swiper-item>
+        <publish class="publish" bindalert="alert"/>
+      </swiper-item>
+    </swiper>
+    
+  </view>
+ 
+</view>
+
