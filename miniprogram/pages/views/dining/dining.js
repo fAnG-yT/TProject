@@ -14,8 +14,8 @@ Component({
    */
   data: {
     msg:{},
-    show:true,
-    timeToPublish:false,
+    show:false,
+    timeToPublish:true,
     listData:[
     ],
     subListData:[
@@ -39,7 +39,7 @@ Component({
 
     select(item){
       var floor = item instanceof Object?item.detail.floor:item
-      // console.log(floor)
+      console.log(floor)
       if(floor!='不限'){
         this.setData({
           subListData : this.data.listData.filter((v)=>v.pickup_location==floor),
@@ -75,22 +75,24 @@ Component({
     toGetMealList:function(){
       // 1. 获取数据库引用
       const db = wx.cloud.database()
-      db.collection('publish').get({
-        success: function (res) {
-          console.log(res)
-          if (res.data.length) {
+      db.collection('publish').get().then(res=>{
+        // success: function (res) {
+          console.log(res.data.length)
+          if (res.data.length==1) {
             this.setData({
               show:true,
-              timeToPublish:res.data.can_ganfan,
-              listData : res.data,
+              listData : res.data
+            },()=>{
+              console.log(this.data.listData)
+              this.select(this.data.floor);
             })
-            this.select(this.data.floor);
+            
           }
           else {
             wx.redirectTo({
               url: '/pages/login/login',
             })
-          }
+          // }
         }
 
       })
@@ -146,119 +148,165 @@ Component({
       },
 
     toGetMeal(item){
+      var that = this
       this.triggerEvent("loading",{loading:true})
-      request.toRequest('/v1/meal/receive/order',{publish_id:item.publish_id}).then(res=>{
-        this.triggerEvent("loading",{loading:false})
-        var msg = null
-        if (res.data.code == 540) {
-          if(!res.data.data.can_open){
-              msg = {
-                show: true,
-                title: "领取成功！",
-                left: "确认",
-                msg: `领取成功的餐饭\n可以去"我的领取"查看哦`,
-                type: 0,
-                rightFn: this.defaultFn
-            };
-          }else{
-            msg = {
-                show: true,
-                title: "领取成功！是否现在取餐？",
-                left: "稍后取餐",
-                right: "现在取餐",
-                msg: `取餐位置在${item.pickup_location}哦`,
-                type: 0,
-                rightFn: this.throttle(
-                  () => this.toDining(res.data.data.receive_id),
-                  1000
-                ),
-            };
-          }
-        } else if (res.data.code == 541) {
-          msg = {
-            show: true,
-            title: "温馨提示",
-            left: "关闭",
-            type: 0,
-            msg: "这个时间段你已经领过一份啦\n不能再领了哦",
-            rightFn: this.defaultFn,
-          };
-        } else if (res.data.code == 542) {
-          msg = {
-            show: true,
-            title: "温馨提示",
-            left: "关闭",
-            type: 0,
-            msg: "哎呀，被别人抢先领走啦！\n看看其他餐饭吧",
-            rightFn: this.defaultFn,
-          };
-        } else if (res.data.code == 543) {
-          msg = {
-            show: true,
-            title: "温馨提示",
-            left: "关闭",
-            type: 0,
-            msg: "哎呀，发布者取消分享这份餐饭了\n看看其他餐饭吧",
-            rightFn: this.defaultFn,
-          };
-        } else if (res.data.code == 544) {
-          msg = {
-            show: true,
-            title: "温馨提示",
-            left: "关闭",
-            type: 0,
-            msg:
-              "此时间段不能领取餐饭呢\n允许领取时间段为\n8:30-14:00\n15:30-20:30",
-            rightFn: this.defaultFn,
-          };
-        } else if (res.data.code == 985) {
-          msg = {
-            show: true,
-            title: "温馨提示",
-            left: "关闭",
-            type: 0,
-            msg:
-              "哎呀，领取失败了\n非常抱歉,美餐账号或密码错误了\n还是去看看其他餐饭吧",
-            rightFn: this.defaultFn,
-          };
-        } else if (res.data.code == 986) {
-          msg = {
-            show: true,
-            title: "温馨提示",
-            left: "关闭",
-            type: 0,
-            msg: "哎呀，领取失败了\n非常抱歉,此餐饭已被清理了，无法领取哦",
-            rightFn: this.defaultFn,
-          };
-        } else if (res.data.code == 1000) {
-            msg = {
-              show: true,
-              title: "温馨提示",
-              left: "确认",
-              msg: `未知错误，请稍后再试`,
-              type: 0,
-              rightFn: this.defaultFn
-          };
-        } else if (res.data.code == 900) {
-          msg = {
-            show: true,
-            title: "温馨提示",
-            right:"确认",
-            msg: `登录失效，请重新登录`,
-            type: 0,
-            rightFn:()=>{
-              wx.redirectTo({
-                url: '/pages/login/login',
-              })
-            }
-        };
-        }
-        this.triggerEvent('alert',{msg})
-        this.toGetMealList();
-      }).catch((e) => {
-        this.triggerEvent("loading",{loading:false})
-        console.log(e);
-      });
+      wx.cloud.callFunction({
+        // 云函数名称
+        name: 'toGetMeal',
+        // 传给云函数的参数
+        data: {
+          item:item,
+          user:{
+            user_id:1,
+            token:wx.getStorageSync('token')
+          },
+        },
+        success: function(res) {
+          console.log(res.result) // 3
+          that.triggerEvent("loading",{loading:false})
+                    console.log(res)
+                    var msg = {}
+                    if(!res.stats.update){
+                        msg = {
+                          show: true,
+                          title: "领取成功！",
+                          left: "确认",
+                          msg: `领取成功的餐饭\n可以去"我的领取"查看哦`,
+                          type: 0,
+                          rightFn: that.defaultFn
+                      };
+                    }else{
+                      msg = {
+                          show: true,
+                          title: "领取成功！是否现在取餐？",
+                          left: "稍后取餐",
+                          right: "现在取餐",
+                          msg: `取餐位置在${item.pickup_location}哦`,
+                          type: 0,
+                          rightFn: that.throttle(
+                            () => that.toDining(res.data.receive_id),
+                            1000
+                          ),
+                      };
+                    }
+          
+        },
+        fail: console.error
+      })
+          
+ 
+      // request.toRequest('/v1/meal/receive/order',{publish_id:item.publish_id}).then(res=>{
+      //   this.triggerEvent("loading",{loading:false})
+      //   var msg = null
+      //   if (res.data.code == 540) {
+      //     if(!res.data.data.can_open){
+      //         msg = {
+      //           show: true,
+      //           title: "领取成功！",
+      //           left: "确认",
+      //           msg: `领取成功的餐饭\n可以去"我的领取"查看哦`,
+      //           type: 0,
+      //           rightFn: this.defaultFn
+      //       };
+      //     }else{
+      //       msg = {
+      //           show: true,
+      //           title: "领取成功！是否现在取餐？",
+      //           left: "稍后取餐",
+      //           right: "现在取餐",
+      //           msg: `取餐位置在${item.pickup_location}哦`,
+      //           type: 0,
+      //           rightFn: this.throttle(
+      //             () => this.toDining(res.data.data.receive_id),
+      //             1000
+      //           ),
+      //       };
+      //     }
+      //   } else if (res.data.code == 541) {
+      //     msg = {
+      //       show: true,
+      //       title: "温馨提示",
+      //       left: "关闭",
+      //       type: 0,
+      //       msg: "这个时间段你已经领过一份啦\n不能再领了哦",
+      //       rightFn: this.defaultFn,
+      //     };
+      //   } else if (res.data.code == 542) {
+      //     msg = {
+      //       show: true,
+      //       title: "温馨提示",
+      //       left: "关闭",
+      //       type: 0,
+      //       msg: "哎呀，被别人抢先领走啦！\n看看其他餐饭吧",
+      //       rightFn: this.defaultFn,
+      //     };
+      //   } else if (res.data.code == 543) {
+      //     msg = {
+      //       show: true,
+      //       title: "温馨提示",
+      //       left: "关闭",
+      //       type: 0,
+      //       msg: "哎呀，发布者取消分享这份餐饭了\n看看其他餐饭吧",
+      //       rightFn: this.defaultFn,
+      //     };
+      //   } else if (res.data.code == 544) {
+      //     msg = {
+      //       show: true,
+      //       title: "温馨提示",
+      //       left: "关闭",
+      //       type: 0,
+      //       msg:
+      //         "此时间段不能领取餐饭呢\n允许领取时间段为\n8:30-14:00\n15:30-20:30",
+      //       rightFn: this.defaultFn,
+      //     };
+      //   } else if (res.data.code == 985) {
+      //     msg = {
+      //       show: true,
+      //       title: "温馨提示",
+      //       left: "关闭",
+      //       type: 0,
+      //       msg:
+      //         "哎呀，领取失败了\n非常抱歉,美餐账号或密码错误了\n还是去看看其他餐饭吧",
+      //       rightFn: this.defaultFn,
+      //     };
+      //   } else if (res.data.code == 986) {
+      //     msg = {
+      //       show: true,
+      //       title: "温馨提示",
+      //       left: "关闭",
+      //       type: 0,
+      //       msg: "哎呀，领取失败了\n非常抱歉,此餐饭已被清理了，无法领取哦",
+      //       rightFn: this.defaultFn,
+      //     };
+      //   } else if (res.data.code == 1000) {
+      //       msg = {
+      //         show: true,
+      //         title: "温馨提示",
+      //         left: "确认",
+      //         msg: `未知错误，请稍后再试`,
+      //         type: 0,
+      //         rightFn: this.defaultFn
+      //     };
+      //   } else if (res.data.code == 900) {
+      //     msg = {
+      //       show: true,
+      //       title: "温馨提示",
+      //       right:"确认",
+      //       msg: `登录失效，请重新登录`,
+      //       type: 0,
+      //       rightFn:()=>{
+      //         wx.redirectTo({
+      //           url: '/pages/login/login',
+      //         })
+      //       }
+      //   };
+      //   }
+      //   this.triggerEvent('alert',{msg})
+      //   this.toGetMealList();
+      // }).catch((e) => {
+      //   this.triggerEvent("loading",{loading:false})
+      //   console.log(e);
+      // });
     },
     
     toDining(receive_id) {
